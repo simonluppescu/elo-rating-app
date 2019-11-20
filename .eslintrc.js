@@ -10,13 +10,14 @@ module.exports = {
     sourceType: "module", // Allows for the use of imports
   },
   rules: {
-    indent: "off",
+    "indent": "off",
     "no-invalid-this": "off",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "off",
     "require-jsdoc": "off",
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/no-empty-function": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-empty-interface": "off"
   },
 };

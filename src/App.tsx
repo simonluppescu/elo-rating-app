@@ -1,8 +1,13 @@
-import React, { FC } from "react";
+import React from "react";
 import "./App.css";
+import Items from "./components/Items";
 
-const App: FC = () => {
-  return <div>Hello World!</div>;
+const App: React.FC = () => {
+  return (
+    <div>
+      <Items></Items>
+    </div>
+  );
 };
 
 export default App;
