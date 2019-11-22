@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import AddItem from "./AddItem";
 import RatingDisplay from "./RatingDisplay";
 
+export interface Item {
+  name: string;
+  rating: number;
+}
 interface Props {}
 interface State {
-  items: string[];
-  ratings: number[];
+  items: Item[];
 }
 
 class Items extends Component<Props, State> {
@@ -13,8 +16,14 @@ class Items extends Component<Props, State> {
     super(props);
 
     this.state = {
-      items: ["Apples", "Oranges", "Pineapple", "Nectarines", "Bananas", "Pomegranate"],
-      ratings: [100, 100, 100, 100, 100, 100]
+      items: [
+        { name: "Apples", rating: 1400 },
+        { name: "Oranges", rating: 1400 },
+        { name: "Pineapple", rating: 1400 },
+        { name: "Nectarines", rating: 1400 },
+        { name: "Bananas", rating: 1400 },
+        { name: "Pomegranate", rating: 1400 }
+      ]
     };
 
     this.addItem = this.addItem.bind(this);
@@ -22,20 +31,19 @@ class Items extends Component<Props, State> {
   }
 
   addItem(value: string): void {
-    this.setState((state) => ({ items: [...state.items, value] }));
-    this.setState((state) => ({ ratings: [...state.ratings, 1000] }));
+    this.setState((state) => ({ items: [...state.items, { name: value, rating: 1400 }] }));
   }
 
   setWinner(winnerIndex: number, loserIndex: number): void {
     this.setState((state) => {
-      const newRatings = [...state.ratings];
+      const newItems = [...state.items];
       const { newWinnerRating, newLoserRating } = this.calculateNewRatings(
-        state.ratings[winnerIndex],
-        state.ratings[loserIndex]
+        state.items[winnerIndex].rating,
+        state.items[loserIndex].rating
       );
-      newRatings[winnerIndex] = newWinnerRating;
-      newRatings[loserIndex] = newLoserRating;
-      return { ratings: newRatings };
+      newItems[winnerIndex].rating = newWinnerRating;
+      newItems[loserIndex].rating = newLoserRating;
+      return { items: newItems };
     });
   }
 
@@ -52,20 +60,17 @@ class Items extends Component<Props, State> {
   }
 
   render(): React.ReactNode {
+    const sorted = this.state.items.slice().sort((a, b) => b.rating - a.rating);
     return (
       <div>
-        {this.state.items.map((item) => (
-          <p key={item}>{item}</p>
+        {sorted.map((item, index) => (
+          <p key={index}>
+            {item.name} - {item.rating}
+          </p>
         ))}
         <AddItem addItem={this.addItem} />
         {this.state.items.map((item, index) => (
-          <RatingDisplay
-            key={index}
-            index={index}
-            items={this.state.items}
-            ratings={this.state.ratings}
-            setWinner={this.setWinner}
-          ></RatingDisplay>
+          <RatingDisplay key={index} index={index} items={this.state.items} setWinner={this.setWinner}></RatingDisplay>
         ))}
       </div>
     );

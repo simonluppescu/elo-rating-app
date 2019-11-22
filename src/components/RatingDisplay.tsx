@@ -1,14 +1,14 @@
 import React from "react";
+import { Item } from "./Items";
 
 interface Props {
   index: number;
-  items: string[];
-  ratings: number[];
+  items: Item[];
   setWinner: (winnerIndex: number, loserIndex: number) => void;
 }
 
 const RatingDisplay: React.FC<Props> = (props) => {
-  const { index, items, ratings, setWinner } = props;
+  const { index, items, setWinner } = props;
   return (
     <>
       {items.map((item, i) => {
@@ -16,11 +16,11 @@ const RatingDisplay: React.FC<Props> = (props) => {
           return (
             <div className="rating-display" key={i}>
               <span>
-                {items[index]} - {ratings[index]}
+                {items[index].name} - {items[index].rating}
               </span>{" "}
               ---{" "}
               <span>
-                {items[i]} - {ratings[i]}
+                {items[i].name} - {items[i].rating}
               </span>
               <button onClick={(): void => setWinner(index, i)}>Left</button>
               <button onClick={(): void => setWinner(i, index)}>Right</button>
