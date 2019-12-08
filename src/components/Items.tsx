@@ -16,14 +16,7 @@ class Items extends Component<Props, State> {
     super(props);
 
     this.state = {
-      items: [
-        { name: "Apples", rating: 1400 },
-        { name: "Oranges", rating: 1400 },
-        { name: "Pineapple", rating: 1400 },
-        { name: "Nectarines", rating: 1400 },
-        { name: "Bananas", rating: 1400 },
-        { name: "Pomegranate", rating: 1400 }
-      ]
+      items: []
     };
 
     this.addItem = this.addItem.bind(this);

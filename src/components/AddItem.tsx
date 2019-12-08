@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, KeyboardEvent } from "react";
 import { stat } from "fs";
 
 interface Props {
@@ -18,6 +18,13 @@ class AddItem extends React.Component<Props, State> {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
+  }
+
+  handleEnter(event: KeyboardEvent): void {
+    if (event.key === "Enter") {
+      this.handleAdd();
+    }
   }
 
   handleAdd(): void {
@@ -35,7 +42,7 @@ class AddItem extends React.Component<Props, State> {
   render(): React.ReactNode {
     return (
       <div>
-        <input type="text" value={this.state.value} onChange={this.handleChange}></input>
+        <input type="text" value={this.state.value} onChange={this.handleChange} onKeyPress={this.handleEnter}></input>
         <button onClick={this.handleAdd}>Add</button>
       </div>
     );
