@@ -1,13 +1,10 @@
 import React from "react";
 import "./App.css";
-import Items from "./components/Items";
+
+import Content from "./components/Content";
 
 const App: React.FC = () => {
-  return (
-    <div>
-      <Items></Items>
-    </div>
-  );
+  return <Content />;
 };
 
 export default App;
