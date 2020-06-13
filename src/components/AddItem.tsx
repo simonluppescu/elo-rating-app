@@ -2,8 +2,8 @@ import React from "react";
 
 export interface Props {}
 
-const AddItems: React.SFC<Props> = () => {
+const AddItem: React.FC<Props> = () => {
   return <div>Let's add an item</div>;
 };
 
-export default AddItems;
+export default AddItem;

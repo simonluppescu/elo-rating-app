@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import AddItems from "./AddItems";
+import AddItems from "./AddItem";
 import RankItems from "./RankItems";
 
 interface Props {}
